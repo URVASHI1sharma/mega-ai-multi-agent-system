@@ -1,4 +1,3 @@
-#This is ReadMe file
 # Mega AI — Multi-Agent Orchestration System
 
 A production-style multi-agent orchestration system built for the Mega AI take-home assignment.
@@ -114,7 +113,7 @@ Performs introspection over prior agent outputs to identify inconsistencies.
 ## 1. Clone Repository
 
 ```bash
-git clone <YOUR_REPOSITORY_URL>
+git clone https://github.com/URVASHI1sharma/mega-ai-multi-agent-system
 cd mega-ai-multi-agent-system
 ```
 
@@ -229,3 +228,94 @@ docker compose up --build
 ```
 
 ---
+
+# Design Tradeoffs & Simplifications
+
+This project was intentionally implemented as a pragmatic engineering MVP under assignment time constraints.
+
+The primary focus areas were:
+- modular architecture
+- centralized orchestration
+- observability
+- reproducibility
+- structured agent communication
+- evaluation readiness
+
+Several production-scale concerns were intentionally simplified to prioritize architectural clarity and end-to-end system completeness.
+
+---
+
+## Intentional Simplifications
+
+### Retrieval System
+A lightweight simulated multi-hop retrieval flow was implemented instead of a full vector-database-backed RAG pipeline.
+
+### SQL Querying
+Natural language to SQL conversion uses lightweight rule-based mapping instead of a fine-tuned semantic parser.
+
+### Context Compression
+Approximate token budgeting structures were prepared, but advanced context compression strategies were intentionally deferred.
+
+### Tool Execution
+Tool orchestration focuses on structured interfaces, failure contracts, and reproducibility rather than production-scale distributed execution.
+
+### Observability
+Structured JSON logging was prioritized over external observability platforms to keep the system lightweight and reproducible.
+
+---
+
+# Failure Handling
+
+The system includes lightweight failure management through:
+- structured error contracts
+- centralized orchestration
+- exception handling
+- policy violation tracking
+- timeout-aware execution
+
+---
+
+# Reproducibility
+
+The project emphasizes reproducibility through:
+- deterministic orchestration flow
+- structured evaluation harness
+- Docker configuration
+- append-only structured logs
+- modular architecture
+
+---
+
+# AI Assistance Disclosure
+
+AI tools were used during the development process for:
+- architecture brainstorming
+- debugging support
+- implementation guidance
+- documentation refinement
+- workflow validation
+
+All final implementation decisions, integrations, and testing were reviewed and validated manually.
+
+---
+
+# Future Improvements
+
+Potential future extensions include:
+- vector database integration
+- advanced context compression
+- dynamic agent routing
+- async worker orchestration
+- streaming responses
+- advanced contradiction resolution
+- semantic retrieval pipelines
+- automated prompt optimization
+
+---
+
+# Final Notes
+
+This project prioritizes engineering clarity, orchestration structure, and reproducibility while intentionally balancing implementation scope against assignment constraints.
+
+The goal was to deliver a clean, runnable, architecture-focused multi-agent system demonstrating practical systems engineering principles for modern LLM workflows.
+
