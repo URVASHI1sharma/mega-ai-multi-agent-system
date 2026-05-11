@@ -6,6 +6,7 @@ from agents.decomposition_agent import run_decomposition_agent
 from agents.retrieval_agent import run_retrieval_agent
 from agents.critique_agent import run_critique_agent
 from agents.synthesis_agent import run_synthesis_agent
+from logs.logger import write_log
 
 
 class Orchestrator:
@@ -27,6 +28,13 @@ class Orchestrator:
 
         context = self.initialize_context(user_query)
 
+        write_log(
+            event_type="pipeline_start",
+            agent_name="Orchestrator",
+            message="Pipeline execution started",
+            metadata={"job_id": context.job_id}
+        )
+
         try:
 
             # STEP 1 — Decomposition
@@ -45,6 +53,13 @@ class Orchestrator:
             synthesis_output = run_synthesis_agent(context)
             context.agent_outputs.append(synthesis_output)
 
+            write_log(
+                event_type="pipeline_success",
+                agent_name="Orchestrator",
+                message="Pipeline execution completed successfully",
+                metadata={"job_id": context.job_id}
+            )
+
             return {
                 "job_id": context.job_id,
                 "final_output": synthesis_output.output_text,
@@ -57,6 +72,13 @@ class Orchestrator:
             self.log_policy_violation(
                 context,
                 f"Pipeline failure: {str(e)}"
+            )
+
+            write_log(
+                event_type="pipeline_failure",
+                agent_name="Orchestrator",
+                message=str(e),
+                metadata={"job_id": context.job_id}
             )
 
             return {
